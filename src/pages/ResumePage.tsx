@@ -1,6 +1,5 @@
-
 import { useState, useEffect, useRef } from "react";
-import { Download, FileText, ExternalLink } from "lucide-react";
+import { Download, FileText, ExternalLink, GraduationCap, Calendar, MapPin, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // Resume sections based on your uploaded resume
@@ -17,6 +16,7 @@ const ResumePage = () => {
   // Refs for animation
   const resumeRef = useRef<HTMLDivElement>(null);
   const pdfViewerRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
 
   // Intersection Observer setup
   useEffect(() => {
@@ -38,11 +38,46 @@ const ResumePage = () => {
 
     if (resumeRef.current) observer.observe(resumeRef.current);
     if (pdfViewerRef.current) observer.observe(pdfViewerRef.current);
+    if (timelineRef.current) observer.observe(timelineRef.current);
 
     return () => {
       observer.disconnect();
     };
   }, []);
+
+  // Education timeline data
+  const educationTimeline = [
+    {
+      id: 1,
+      title: "Chartered Accountant",
+      institution: "ICAI",
+      date: "November 2015",
+      location: "Mumbai, India",
+      description: "Completed professional certification with a score of 56%",
+      icon: <GraduationCap className="h-5 w-5" />,
+      achievement: "Professional Qualification"
+    },
+    {
+      id: 2,
+      title: "CFA, Level 3",
+      institution: "CFA Institute",
+      date: "November 2021",
+      location: "Mumbai, India",
+      description: "Advanced finance and investment analysis certification",
+      icon: <Award className="h-5 w-5" />,
+      achievement: "Professional Certification"
+    },
+    {
+      id: 3,
+      title: "B. Comm",
+      institution: "R. A. Podar College, Mumbai University",
+      date: "March 2014",
+      location: "Mumbai, India",
+      description: "Undergraduate degree completed with a score of 75%",
+      icon: <GraduationCap className="h-5 w-5" />,
+      achievement: "Bachelor's Degree"
+    }
+  ];
 
   return (
     <div className="pt-24 pb-16">
@@ -200,39 +235,51 @@ const ResumePage = () => {
                 </div>
               )}
               
-              {/* Education */}
+              {/* Education Timeline */}
               {activeSection === "education" && (
-                <div className="space-y-6">
-                  <div className="flex flex-col md:flex-row justify-between p-6 border border-portfolio-light-gray rounded-lg hover:shadow-md transition-all">
-                    <div>
-                      <h3 className="text-xl font-bold text-portfolio-dark-blue mb-1">Chartered Accountant</h3>
-                      <p className="text-portfolio-gray">ICAI</p>
-                    </div>
-                    <div className="mt-2 md:mt-0 text-right">
-                      <p className="text-portfolio-gray">November 2015</p>
-                      <p className="text-portfolio-blue font-medium">Score: 56%</p>
-                    </div>
-                  </div>
+                <div className="space-y-8" ref={timelineRef}>
+                  <h3 className="text-2xl font-bold text-portfolio-dark-blue mb-6">Education Timeline</h3>
                   
-                  <div className="flex flex-col md:flex-row justify-between p-6 border border-portfolio-light-gray rounded-lg hover:shadow-md transition-all">
-                    <div>
-                      <h3 className="text-xl font-bold text-portfolio-dark-blue mb-1">CFA, Level 3</h3>
-                      <p className="text-portfolio-gray">CFA Institute</p>
-                    </div>
-                    <div className="mt-2 md:mt-0 text-right">
-                      <p className="text-portfolio-gray">November 2021</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex flex-col md:flex-row justify-between p-6 border border-portfolio-light-gray rounded-lg hover:shadow-md transition-all">
-                    <div>
-                      <h3 className="text-xl font-bold text-portfolio-dark-blue mb-1">B. Comm</h3>
-                      <p className="text-portfolio-gray">R. A. Podar College, Mumbai University</p>
-                    </div>
-                    <div className="mt-2 md:mt-0 text-right">
-                      <p className="text-portfolio-gray">March 2014</p>
-                      <p className="text-portfolio-blue font-medium">Score: 75%</p>
-                    </div>
+                  <div className="relative">
+                    {/* Timeline Vertical Line */}
+                    <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-portfolio-light-blue"></div>
+                    
+                    {/* Timeline Items */}
+                    {educationTimeline.map((item, index) => (
+                      <div key={item.id} className={`relative pl-20 pb-10 ${index === educationTimeline.length - 1 ? '' : 'mb-6'}`}>
+                        {/* Timeline Circle */}
+                        <div className="absolute left-0 flex items-center justify-center w-16 h-16 bg-portfolio-light-blue rounded-full border-4 border-white shadow-md z-10">
+                          <div className="bg-portfolio-blue p-2 rounded-full text-white">
+                            {item.icon}
+                          </div>
+                        </div>
+                        
+                        {/* Timeline Content */}
+                        <div className="bg-white p-6 rounded-xl shadow-md border border-portfolio-light-gray hover:shadow-lg transition-all">
+                          <div className="flex flex-col md:flex-row justify-between mb-4">
+                            <h4 className="text-xl font-bold text-portfolio-dark-blue">{item.title}</h4>
+                            <span className="inline-flex items-center text-portfolio-gray mt-2 md:mt-0">
+                              <Calendar className="h-4 w-4 mr-1" />
+                              {item.date}
+                            </span>
+                          </div>
+                          
+                          <div className="mb-3">
+                            <div className="text-portfolio-blue font-medium">{item.institution}</div>
+                            <div className="flex items-center text-portfolio-gray text-sm mt-1">
+                              <MapPin className="h-3 w-3 mr-1" />
+                              {item.location}
+                            </div>
+                          </div>
+                          
+                          <p className="text-portfolio-gray mb-4">{item.description}</p>
+                          
+                          <div className="inline-block bg-portfolio-light-blue text-portfolio-blue px-3 py-1 rounded-full text-sm font-medium">
+                            {item.achievement}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}
