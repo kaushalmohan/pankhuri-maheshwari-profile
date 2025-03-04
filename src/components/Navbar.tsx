@@ -1,21 +1,26 @@
 
 import { useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
 import { Menu, X, Linkedin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface NavbarProps {
   isScrolled: boolean;
+  activeSection: string;
 }
 
-const Navbar = ({ isScrolled }: NavbarProps) => {
+const Navbar = ({ isScrolled, activeSection }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
   
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 100, // Offset for the navbar
+        behavior: "smooth"
+      });
+      setIsOpen(false);
+    }
+  };
 
   return (
     <header 
@@ -28,47 +33,59 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          <NavLink 
-            to="/" 
+          <button 
+            onClick={() => scrollToSection("about")}
             className="text-xl font-bold text-portfolio-dark-blue"
           >
             Pankhuri Maheshwari
-          </NavLink>
+          </button>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8 items-center">
-            <NavLink 
-              to="/" 
-              className={({ isActive }) => 
-                cn("link-hover-effect py-2 font-medium", 
-                isActive ? "text-portfolio-blue" : "text-portfolio-gray hover:text-portfolio-dark-blue")}
+            <button 
+              onClick={() => scrollToSection("about")}
+              className={cn(
+                "link-hover-effect py-2 font-medium", 
+                activeSection === "about" 
+                  ? "text-portfolio-blue" 
+                  : "text-portfolio-gray hover:text-portfolio-dark-blue"
+              )}
             >
               About
-            </NavLink>
-            <NavLink 
-              to="/projects" 
-              className={({ isActive }) => 
-                cn("link-hover-effect py-2 font-medium", 
-                isActive ? "text-portfolio-blue" : "text-portfolio-gray hover:text-portfolio-dark-blue")}
+            </button>
+            <button 
+              onClick={() => scrollToSection("projects")}
+              className={cn(
+                "link-hover-effect py-2 font-medium", 
+                activeSection === "projects" 
+                  ? "text-portfolio-blue" 
+                  : "text-portfolio-gray hover:text-portfolio-dark-blue"
+              )}
             >
               Projects
-            </NavLink>
-            <NavLink 
-              to="/resume" 
-              className={({ isActive }) => 
-                cn("link-hover-effect py-2 font-medium", 
-                isActive ? "text-portfolio-blue" : "text-portfolio-gray hover:text-portfolio-dark-blue")}
+            </button>
+            <button 
+              onClick={() => scrollToSection("resume")}
+              className={cn(
+                "link-hover-effect py-2 font-medium", 
+                activeSection === "resume" 
+                  ? "text-portfolio-blue" 
+                  : "text-portfolio-gray hover:text-portfolio-dark-blue"
+              )}
             >
               Resume
-            </NavLink>
-            <NavLink 
-              to="/contact" 
-              className={({ isActive }) => 
-                cn("link-hover-effect py-2 font-medium", 
-                isActive ? "text-portfolio-blue" : "text-portfolio-gray hover:text-portfolio-dark-blue")}
+            </button>
+            <button 
+              onClick={() => scrollToSection("contact")}
+              className={cn(
+                "link-hover-effect py-2 font-medium", 
+                activeSection === "contact" 
+                  ? "text-portfolio-blue" 
+                  : "text-portfolio-gray hover:text-portfolio-dark-blue"
+              )}
             >
               Contact
-            </NavLink>
+            </button>
             <a 
               href="https://www.linkedin.com/in/pankhuri-maheshwari-195845159/" 
               target="_blank" 
@@ -95,38 +112,50 @@ const Navbar = ({ isScrolled }: NavbarProps) => {
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white/90 nav-blur border-b border-gray-200/20 shadow-md animate-fade-in">
           <nav className="container mx-auto py-4 px-4 flex flex-col space-y-4">
-            <NavLink 
-              to="/" 
-              className={({ isActive }) => 
-                cn("py-2 font-medium", 
-                isActive ? "text-portfolio-blue" : "text-portfolio-gray")}
+            <button 
+              onClick={() => scrollToSection("about")}
+              className={cn(
+                "py-2 text-left font-medium", 
+                activeSection === "about" 
+                  ? "text-portfolio-blue" 
+                  : "text-portfolio-gray"
+              )}
             >
               About
-            </NavLink>
-            <NavLink 
-              to="/projects" 
-              className={({ isActive }) => 
-                cn("py-2 font-medium", 
-                isActive ? "text-portfolio-blue" : "text-portfolio-gray")}
+            </button>
+            <button 
+              onClick={() => scrollToSection("projects")}
+              className={cn(
+                "py-2 text-left font-medium", 
+                activeSection === "projects" 
+                  ? "text-portfolio-blue" 
+                  : "text-portfolio-gray"
+              )}
             >
               Projects
-            </NavLink>
-            <NavLink 
-              to="/resume" 
-              className={({ isActive }) => 
-                cn("py-2 font-medium", 
-                isActive ? "text-portfolio-blue" : "text-portfolio-gray")}
+            </button>
+            <button 
+              onClick={() => scrollToSection("resume")}
+              className={cn(
+                "py-2 text-left font-medium", 
+                activeSection === "resume" 
+                  ? "text-portfolio-blue" 
+                  : "text-portfolio-gray"
+              )}
             >
               Resume
-            </NavLink>
-            <NavLink 
-              to="/contact" 
-              className={({ isActive }) => 
-                cn("py-2 font-medium", 
-                isActive ? "text-portfolio-blue" : "text-portfolio-gray")}
+            </button>
+            <button 
+              onClick={() => scrollToSection("contact")}
+              className={cn(
+                "py-2 text-left font-medium", 
+                activeSection === "contact" 
+                  ? "text-portfolio-blue" 
+                  : "text-portfolio-gray"
+              )}
             >
               Contact
-            </NavLink>
+            </button>
             <div className="pt-2 border-t border-gray-200">
               <a 
                 href="https://www.linkedin.com/in/pankhuri-maheshwari-195845159/" 

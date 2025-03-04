@@ -4,6 +4,16 @@ import { Linkedin, Mail } from "lucide-react";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 100,
+        behavior: "smooth"
+      });
+    }
+  };
+  
   return (
     <footer className="bg-portfolio-dark-blue text-white py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -37,24 +47,36 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/" className="text-portfolio-light-gray hover:text-white transition-colors">
+                <button 
+                  onClick={() => scrollToSection("about")}
+                  className="text-portfolio-light-gray hover:text-white transition-colors"
+                >
                   About
-                </a>
+                </button>
               </li>
               <li>
-                <a href="/projects" className="text-portfolio-light-gray hover:text-white transition-colors">
+                <button 
+                  onClick={() => scrollToSection("projects")}
+                  className="text-portfolio-light-gray hover:text-white transition-colors"
+                >
                   Projects
-                </a>
+                </button>
               </li>
               <li>
-                <a href="/resume" className="text-portfolio-light-gray hover:text-white transition-colors">
+                <button 
+                  onClick={() => scrollToSection("resume")}
+                  className="text-portfolio-light-gray hover:text-white transition-colors"
+                >
                   Resume
-                </a>
+                </button>
               </li>
               <li>
-                <a href="/contact" className="text-portfolio-light-gray hover:text-white transition-colors">
+                <button 
+                  onClick={() => scrollToSection("contact")}
+                  className="text-portfolio-light-gray hover:text-white transition-colors"
+                >
                   Contact
-                </a>
+                </button>
               </li>
             </ul>
           </div>
