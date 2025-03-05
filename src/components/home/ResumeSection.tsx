@@ -1,4 +1,3 @@
-
 import { FileText } from "lucide-react";
 import EducationSection from "./EducationSection";
 
@@ -15,7 +14,7 @@ const ResumeSection = () => {
         <EducationSection />
         
         <a 
-          href="https://www.kaushalmohan.com/Kaushal_Mohan_Resume.pdf" 
+          href="https://drive.google.com/file/d/1fVBzzjuPMjOU8jMYx_QZoqpXBgOxo1cG/view?usp=sharing" 
           target="_blank" 
           rel="noopener noreferrer"
           className="inline-flex items-center bg-portfolio-blue text-white px-6 py-3 rounded-lg hover:bg-portfolio-dark-blue transition-colors hover-lift"

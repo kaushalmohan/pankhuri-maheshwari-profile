@@ -92,7 +92,7 @@ const ResumePage = () => {
             View online or download for your reference.
           </p>
           <a 
-            href="https://www.kaushalmohan.com/Kaushal_Mohan_Resume.pdf" 
+            href="https://drive.google.com/file/d/1fVBzzjuPMjOU8jMYx_QZoqpXBgOxo1cG/view?usp=sharing" 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center bg-portfolio-blue text-white px-6 py-3 rounded hover:bg-portfolio-dark-blue transition-colors hover-lift animate-fade-in"
@@ -441,7 +441,7 @@ const ResumePage = () => {
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-portfolio-dark-blue">Full Resume</h2>
                 <a 
-                  href="https://www.kaushalmohan.com/Kaushal_Mohan_Resume.pdf" 
+                  href="https://drive.google.com/file/d/1fVBzzjuPMjOU8jMYx_QZoqpXBgOxo1cG/view?usp=sharing" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-portfolio-blue hover:text-portfolio-dark-blue"
@@ -456,7 +456,7 @@ const ResumePage = () => {
                   <FileText className="h-12 w-12 mx-auto text-portfolio-gray mb-4" />
                   <p className="text-portfolio-gray mb-4">View my complete resume</p>
                   <a 
-                    href="https://www.kaushalmohan.com/Kaushal_Mohan_Resume.pdf" 
+                    href="https://drive.google.com/file/d/1fVBzzjuPMjOU8jMYx_QZoqpXBgOxo1cG/view?usp=sharing" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="inline-flex items-center bg-portfolio-blue text-white px-4 py-2 rounded hover:bg-portfolio-dark-blue transition-colors"

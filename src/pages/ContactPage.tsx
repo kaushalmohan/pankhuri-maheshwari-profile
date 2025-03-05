@@ -1,4 +1,4 @@
-
+import React from "react";
 import { Mail, Linkedin } from "lucide-react";
 
 const ContactPage = () => {
