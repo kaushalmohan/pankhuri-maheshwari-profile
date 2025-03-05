@@ -1,4 +1,3 @@
-
 // Education details
 const education = [
   {
@@ -26,18 +25,18 @@ const EducationSection = () => {
       <h3 className="text-2xl font-bold mb-8 text-portfolio-dark-blue">Education Journey</h3>
       <div className="max-w-3xl mx-auto relative">
         {/* Timeline line */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-portfolio-light-blue"></div>
+        <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-portfolio-light-blue"></div>
         
         {/* Timeline items */}
-        <div className="space-y-12">
+        <div className="space-y-6">
           {education.map((edu, index) => (
             <div key={index} className="relative">
               {/* Timeline dot */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-portfolio-blue"></div>
+              <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-portfolio-blue"></div>
               
-              {/* Content - alternating sides */}
-              <div className={`flex ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
-                <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'text-left pl-8'}`}>
+              {/* Content - stacked on mobile, alternating sides on desktop */}
+              <div className={`flex ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
+                <div className={`w-full md:w-5/12 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
                   <div className="bg-white p-5 rounded-lg shadow-sm border border-portfolio-light-gray hover-lift">
                     <h4 className="text-xl font-bold mb-1 text-portfolio-dark-blue">{edu.degree}</h4>
                     <p className="text-portfolio-gray">{edu.institution}</p>
